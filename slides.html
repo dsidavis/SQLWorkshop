@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SQL in R</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
+# SQL in R
+
+
+## [https://github.com/dsidavis/SQLinR](https://github.com/dsidavis/SQLinR)
+
+### Duncan Temple Lang
+
+<div style="clear: both"/>
+
+<!-- <hr width="50%"/> -->
+<img src="http://dsi.ucdavis.edu/images/dsi_banner.png" height="40%"></img>
+
+---
+layout: true
+<img style="float: right" src="http://dsi.ucdavis.edu/images/dsi_brand_logo.png"></img>
+
+---
+
+# Simple Task
+
+We have peoples ages (in years)
+
+```
+id,age,sex
+3123,25,M
+123,21,F
+```
+
+1. Compute the mean
+
+1. Compute the median.
+
+1. Compute the mean by sex (F/M)
+
+---
+
+# Challenge 2
+
+We have 500 million observations
+
+How does this change your answers to the previous questions?
+
+---
+
+
+---
+
+# Database Basics
+
+1. Client-Server versus StandAlone
+
+1. Client-Server on same machine.
+
+---
+
+# Local Client, Remote Server
+
+1. Need client software for your local machine.
+   + Different for each platform/OS
+   + Need to install on each machine.
+
+1. Need login and password for account on remote server's database
+    + Different from a user account on the server machine
+    + This account is for the database.
+
+1.
+
+---
+
+# Installing 3rd party Code
+
++ Install the server separately from the client software.
+
++ If not running the server, only need client.
+   + If not running client, only need server.
+
+
+
+---
+
+# DBI + DB-specific driver
+
++ DBI provides function for most DB tasks.
+  + Generic functions
+  + Most take a connection object, some a result set
+
++
+
+
+---
+
+```
+library(DBI)
+ls(2)
+```
+```
+ [1] "ANSI"                   "dbBegin"               
+ [3] "dbBind"                 "dbBreak"               
+ [5] "dbCallProc"             "dbClearResult"         
+ [7] "dbColumnInfo"           "dbCommit"              
+ [9] "dbConnect"              "dbDataType"            
+[11] "dbDisconnect"           "dbDriver"              
+[13] "dbExecute"              "dbExistsTable"         
+[15] "dbFetch"                "dbGetDBIVersion"       
+[17] "dbGetException"         "dbGetInfo"             
+[19] "dbGetQuery"             "dbGetRowCount"         
+[21] "dbGetRowsAffected"      "dbGetStatement"        
+[23] "dbHasCompleted"         "dbIsValid"             
+[25] "dbListConnections"      "dbListFields"          
+[27] "dbListObjects"          "dbListResults"         
+[29] "dbListTables"           "dbQuoteIdentifier"     
+[31] "dbQuoteLiteral"         "dbQuoteString"         
+[33] "dbReadTable"            "dbRemoveTable"         
+[35] "dbRollback"             "dbSendQuery"           
+[37] "dbSendStatement"        "dbSetDataMappings"     
+[39] "dbUnloadDriver"         "dbUnquoteIdentifier"   
+[41] "dbWithTransaction"      "dbWriteTable"          
+[43] "fetch"                  "Id"                    
+[45] "isSQLKeyword"           "isSQLKeyword.default"  
+[47] "make.db.names"          "make.db.names.default" 
+[49] "show"                   "SQL"                   
+[51] "sqlAppendTable"         "sqlAppendTableTemplate"
+[53] "sqlColumnToRownames"    "sqlCommentSpec"        
+[55] "sqlCreateTable"         "sqlData"               
+[57] "sqlInterpolate"         "SQLKeywords"           
+[59] "sqlParseVariables"      "sqlParseVariablesImpl" 
+[61] "sqlQuoteSpec"           "sqlRownamesToColumn"   
+
+
+---
+# Connect to Database
+
++ Install R package for the particular server (e.g. RSQLite, ROracle, RMySQL)
+
++ Load library.
+
++ Create instance of database driver
+   + SQLite()
+   + MySQL()
+
++ dbConnect()
+  
+```
+ con = dbConnect(SQLite(), "students")
+```
+
++ Can have multiple simultaneous connections
+   + To different databases within the same server
+   + To different servers, of different types.
+
+<!-- Show with SQLite -->
+
+---
+
+# Explore the Database
+
++
+```
+tblNames = dbListTables(con)
+```
+
++
+
+```
+dbListFields(con, "students")
+```
+
++ 
+
+
+
+
+
+---
+
+# Key Functions
+
+|Function|Purpose|
+|-----|----|
+|dbConnect||
+|dbGetQuery()| |
+|||
+
+|dbClearResult||
+
+
+
+---
+
+
+
+---
+
+# Synchronous & Asynchronous
+
++ `ans = dbGetQuery(con, query)`
+  + sends query
+  + waits for it to finish
+  + returns results
+
+
++ `rs = dbSendQuery(con, query)`
+   + ends query
+   + returns immediately
+   + result is a holder for where the results will be collected.
+   + ResultSet
+
++ We query the result set
+   + fetch K rows
+   + "reduce"/aggregate the results
+   + update overall answer
+
++ Ask if query is complete?
+
+---
+
+# Joins
+
++ Types of joins
+   1. Inner
+   1. Outer/Full
+   1. Left
+   1. Right
+
+
+---
+
+# Joins
+
+
+
+---
+
+# Equivalent R Operations for Joins
+
+---
+
+# Computations in SQL or R
+
++ In some cases, we can do all the computations in SQL
+```
+SELECT AVG(AGE) FROM People;
+```
+
++ In other cases, do all computations in R
+```
+ans = dbGetQuery( "SELECT * FROM People;")
+mean(ans$Age)
+```
+
+
++ "Obviously" better
+```
+ans = dbGetQuery( "SELECT Age FROM People;")
+mean(ans$Age)
+```
+
++ Consider amount of data transferred.
+
+---
+
+# Computations in the Database
+
++ If we can do the computations in the database,
+   + we can reduce the data transfer.
+   + use potentially faster server machine (but shared)
+
++ Limitation is functionality in server.
+
++ Add new functionality via UDFs - User Defined Functions.
+
++ example
+
+<!-- 
+ Need old version of RSQLite (0.9-4.
+ Do we have an LLVM-compiled function example of this - yes.  RllvmSQLiteUDF.
+-->
+
+---
+
+# data.table package.
+
+---
+
+# Resources
+
+
+1. SQLite
+1. Postgres
+1. MySQL
+
+
+1. DBI
+1. RMySQL
+1. RPostgres
+1. ROracle
+1. RSQLite
+1. RSQLiteUDF
+
+
+---
+# NoSQL
+
+
+---
+
+1. SQL for Smartie: Advanced SQL Programming, Joe Celko.
+1. MySQL Cookbook, Paul DuBois
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>

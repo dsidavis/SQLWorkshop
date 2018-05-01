@@ -1,0 +1,9 @@
+In this workshop, we'll discuss how to use relational databases from
+within R, when to use them, different database models and
+implementations (client-server and standalone), the database ecosystem
+in R and the computational model.  We'll focus on using existing
+databases and the basic elements of SQL mentioning some of the more
+advanced ideas and features (e.g. R functions as user-defined
+functions in SQL). As participants want, we can discuss the process
+and design of creating databases, NoSQL, distributed databases, and
+other related topics.

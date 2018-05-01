@@ -1,0 +1,51 @@
+
+Using SQL directly or from R/Python.
+
+Start with an existing database.
+
+Database
+  Collection of tables.
+  As with CSV/Dataframes, etc.
+    Tables have rows and columns
+      Columns are variables
+      Rows correspond to observations
+
+    All observations can be in a single table
+    But databases encourage avoiding redundancy
+
+    Consider repeated observations -
+
+a person attending a doctor
+    First Name, Last Name, Date of Birth, Date, Blood pressure, Temperature, Weight, Height, ..
+    Duncan, Temple Lang, 12/3/1968,1/1/17,160,98.6,180,73
+    Duncan, Temple Lang, 12/3/1968,6/1/17,170,96.8,185,73.5
+
+Climate information
+  Station,Address,Longitude,Latitude,Precipitation,Humidity,Temperature
+  S123,
+
+
+
+SELECT VAR1, VAR2, VAR3 FROM TABLE;
+
+SELECT * FROM TABLE;
+
+WHERE  - filter subset
+
+Across Multiple tables
+SELECT
+
+Transform variables - functions on one or more functions
+ SELECT SQRT(x)
+ SELECT 
+
+
+UDFs in SQLite
+
+Creating a Database & Tables.
+  Unlike CSVs, we need to specify a schema
+    variable name and their type
+    order of the variables
+    
+  Most have a specific, fast way to ingest data.
+
