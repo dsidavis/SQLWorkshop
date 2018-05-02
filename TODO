@@ -1,0 +1,74 @@
+Get instances of  MySQL & Postgres running locally.
+     cd ~/postgres
+     ./bin/initdb -D ~/postgres/DATA
+     ./bin/pg_ctl -D /Users/duncan/postgres/DATA/ -l logfile start
+     ./bin/createdb duncan
+
+     Now
+        ./bin/psql
+
+              create table foo (x int, y real);
+
+              \d
+	      \conninfo
+
+
+         INSERT INTO foo VALUES (1, 2);
+         INSERT INTO foo VALUES (100, 22);
+
+         select * from foo;
+
+
+   Can other people connect to this server?
+   
+    Change the pg_hba.conf file in the DATA/ directory.
+    Change the trust to md5 in the line
+    # "local" is for Unix domain socket connections only
+    local   all             all                                     trust
+
+
+    Now connect via RPostgreSQL
+
+    drv = PostgreSQL()
+    con = dbConnect(drv)
+    dbListTables(con)
+
+     [1] "foo"
+
+   CREATE user dtl with password 'JustChecking';
+
+   as superuser (not dtl)
+     ./bin/createdb dtl
+
+  Then login to a separate account, e.g., dtl2
+   The psql -U dtl
+
+  drv = PostgreSQL()
+  con = dbConnect(drv, "dtl", "JustChecking2")
+
+  
+
+http://sqlitebrowser.org/
+
+
+Get ODBC and postgres working
+  See ~/Databases/{unixODBC,psqlodbc{
+   Installed in ~/Databases/local
+    Use local/isql  to run, but need to register driver??
+
+
+Create data with multiple tables
+
+Show joins in R & SQL
+ See PresidentOrders/join.R
+
+
+Talk about Hive
+  Ask Clark
+
+
+Different concepts of keys; joins
+
+
+Views for 25
+

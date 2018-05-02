@@ -177,6 +177,8 @@ ls(2)
 
 # Explore the Database
 
+(See DataEG/Students/explore.R)
+
 +
 ```
 tblNames = dbListTables(con)
@@ -190,8 +192,40 @@ dbListFields(con, "students")
 
 + 
 
+```
+vals = dbReadTable(con, "students")
+```
+
++ Now the entire table is back in R as regular R objects:
+```
+sapply(vals, class)
+```
+
++
+```
+d1 = dbGetQuery(con, "SELECT * FROM students WHERE stage = 'D1'")
+```
 
 
++ Get the types of each column
+```
+d1 = dbGetQuery(con, "SELECT * FROM students LIMIT 1")
+```
+
++  Get the SQL types of each column
+```
+rs = dbSendQuery(con, "SELECT * FROM students LIMIT 1")
+fetch(rs, 1)
+getColumnInfo(rs)
+dbClearResult(rs)
+```
+
+
+
+
+
++
+d1.stat = dbGetQuery(con, "SELECT * FROM students WHERE stage = 'D1' AND program = 'Statistics'")
 
 
 ---
@@ -234,6 +268,19 @@ dbListFields(con, "students")
    + update overall answer
 
 + Ask if query is complete?
+
+
+---
+
++
+```
+rs = dbSendQuery(con, "SELECT * FROM students WHERE stage = 'D1'")
+
+while(nrow(tmp = fetch(rs, 1))) {
+  # process tmp
+  print(tmp)
+}
+```
 
 ---
 
