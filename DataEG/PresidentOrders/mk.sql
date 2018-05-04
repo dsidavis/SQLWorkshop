@@ -13,6 +13,6 @@ create table customer (
 create table orders (
   order_id INT,
   order_date VARCHAR(12),
-  amount VARCHAR(10),
+  amount REAL,
   customer_id INT
 );
