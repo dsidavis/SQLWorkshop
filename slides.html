@@ -488,6 +488,7 @@ d1.stat = dbGetQuery(con, "SELECT * FROM students WHERE stage = 'D1' AND program
 # Using dbSendQuery() and fetch()
 
 + Send the query and loop until there are no more blocks results.
+
 ```{r}
 rs = dbSendQuery(con, "SELECT * FROM students WHERE stage = 'D1'")
 
@@ -526,6 +527,8 @@ sprintf("SELECT * FROM table WHERE x > %f", t)
   + Compute values in R based on result (and other local values)
   + Create dynamic query string
   + Send new query
+
+---
 
 + Between 2 quantiles
 ```
