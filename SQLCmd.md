@@ -67,10 +67,9 @@ SELECT * FROM customer WHERE first_name = 'James';
 # Comparison operators
 
 + We intuited = and > 
-+ Also <,  >=, <=
++ Also <,  >=, <=, <>  (not equal)
 
 + IN
-
 ```
 SELECT * FROM customer WHERE first_name IN ('John', 'James');
 ```
@@ -83,6 +82,12 @@ SELECT * FROM customer WHERE first_name IN ('John', 'James');
 ```
 SELECT * FROM customer WHERE zipcode LIKE  '22%';
 ```
+
++ `BETWEEN`
+```
+SELECT customer_id, amount FROM  orders WHERE amount BETWEEN 20 AND 80;
+```
+
 
 ---
 
@@ -263,6 +268,19 @@ SELECT customer_id, SUM(amount) AS total FROM orders
 ```
 
 
+---
+# HAVING
+
++ How do we subset the results of a GROUP BY ?
+  + Do it in R after getting the results
+  
++ In the database before results are returned?
+  + Use the `HAVING` clause on the result of the GROUP BY
+  
+```
+SELECT customer_id, SUM(amount) AS total FROM  orders GROUP BY customer_id HAVING total > 100;
+```
+  
 
 ---
 
