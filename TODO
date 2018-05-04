@@ -1,13 +1,8 @@
-[need slides]
 + Show joins in R & SQL
    + Description + Picture
    + SQL code
    + R code
    See PresidentOrders/join.R
-
-
-+ UDF slides
-+ Embedding R inside Postgres/MySQL
 
 
 + Test performance on big data.
@@ -35,6 +30,10 @@
 ----------------------------
 
 # Done
+
++ UDF slides
++ Embedding R inside Postgres/MySQL
+
 
 + Check if query/result is complete slides.html#438
 
