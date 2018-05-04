@@ -1,11 +1,10 @@
-select first_name, last_name, order_date, order_amount from customers c left join orders o on c.customer_id = o.customer_id;
+SELECT first_name, last_name, order_date, amount FROM customer c INNER JOIN orders o ON c.customer_id = o.customer_id;
 
-select first_name, last_name, order_date, amount from customer c left join orders o on c.customer_id = o.customer_id;
+SELECT first_name, last_name, order_date, amount FROM customer c LEFT JOIN orders o on c.customer_id = o.customer_id;
+
+SELECT first_name, last_name, order_date, order_amount FROM customers c RIGHT JOIN orders o on c.customer_id = o.customer_id;
 
 
-select first_name, last_name, order_date, order_amount from customers c right join orders o on c.customer_id = o.customer_id;
-
-
-select first_name, last_name, order_date, order_amount from customers c full join orders o on c.customer_id = o.customer_id;
+SELECT first_name, last_name, order_date, order_amount FROM customers c FULL JOIN orders o on c.customer_id = o.customer_id;
 
 
