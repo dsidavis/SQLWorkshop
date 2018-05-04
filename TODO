@@ -1,27 +1,72 @@
-Client Server
-SQLite3
-
-Different concepts of keys;
-     joins
-
-Building queries in R via string substitution
-Subqueries and 2-stage queries in R .
-
 [need slides]
 + Show joins in R & SQL
- See PresidentOrders/join.R
+   + Description + Picture
+   + SQL code
+   + R code
+   See PresidentOrders/join.R
+
+
++ UDF slides
++ Embedding R inside Postgres/MySQL
+
+
++ Test performance on big data.
+
++ DBI functions and slides.
+
+# need to complete
++ Load data into postgres
+
++ Example data for students, classes, etc.
+
+
+# Check done
++ SQL commands - See SQLCmd.md
+  Need joins.
+   Include into slides.
+
+# Low
+
++ Different concepts of keys
+
++ [low] Views - in SQLCmd.html.  Just remove?    
+
+
+----------------------------
+
+# Done
+
++ Check if query/result is complete slides.html#438
+
++ [Integrate into slides] Client Server
+  + SQLite3
+
+
+
++ Show cartoon of tables and relationships
+  + how we do this in R
+  + wide form, long form, redundancy
+
 + http://sqlitebrowser.org/
   Show running.
 
-[need to complete] SQL commands - See SQLCmd.md
-   Include into slides.
++ PostgreSQL() in R example.
+  + See below
+  + Contrast immediately after RSQLite connection
+
++ [low] Postgres functions.
+    https://www.postgresql.org/docs/9.1/static/functions.html
 
 
-Load data into postgres
++ Callout Aliases - AS
 
-Example data for students, classes, etc.
 
-Postgres functions.
++ *[Simple version done] Subqueries. - in SQLCmd.html - remove and fix in slides.html
++ [done] Building queries in R via string substitution
++ [done] Subqueries and 2-stage queries in R .
+
+
+----------------
 
 [done] Get instances of Postgres running locally.
      MySQL??
@@ -74,9 +119,6 @@ Postgres functions.
   con = dbConnect(drv, "dtl", "JustChecking2")
 
   
-
-http://sqlitebrowser.org/
-Show running.
 
 
 Get ODBC and postgres working
