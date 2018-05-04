@@ -1,4 +1,31 @@
-Get instances of  MySQL & Postgres running locally.
+Client Server
+SQLite3
+
+Different concepts of keys;
+     joins
+
+Building queries in R via string substitution
+Subqueries and 2-stage queries in R .
+
+[need slides]
++ Show joins in R & SQL
+ See PresidentOrders/join.R
++ http://sqlitebrowser.org/
+  Show running.
+
+[need to complete] SQL commands - See SQLCmd.md
+   Include into slides.
+
+
+Load data into postgres
+
+Example data for students, classes, etc.
+
+Postgres functions.
+
+[done] Get instances of Postgres running locally.
+     MySQL??
+      
      cd ~/postgres
      ./bin/initdb -D ~/postgres/DATA
      ./bin/pg_ctl -D /Users/duncan/postgres/DATA/ -l logfile start
@@ -49,6 +76,7 @@ Get instances of  MySQL & Postgres running locally.
   
 
 http://sqlitebrowser.org/
+Show running.
 
 
 Get ODBC and postgres working
@@ -58,17 +86,14 @@ Get ODBC and postgres working
 
 
 Create data with multiple tables
-
-Show joins in R & SQL
- See PresidentOrders/join.R
+ Baseball
+ IMDB
 
 
 Talk about Hive
   Ask Clark
 
 
-Different concepts of keys; joins
 
-
-Views for 25
+Views for May 25 - Jerry's students.
 
